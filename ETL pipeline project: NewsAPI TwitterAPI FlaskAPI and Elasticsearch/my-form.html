@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="js-focus-visible">
+    
+    <head>
+        <title>Company Data Search Engine</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+        <style>
+            .scroll {
+                max-height: 500px;
+                max-width: 100%;
+                overflow-y: auto;
+}
+        </style>
+    </head>
+    <body>
+
+        <div class="card-header py-3 text-white bg-primary border-primary">
+            <h1 style="text-align: center;">{{note | safe }}</h1>
+        </div>
+
+        <div class ="container py-3"> 
+            <div class="pricing-header p-3 pb-md-4 mx-auto text-center" >
+                <h1 class="display-4 fw-normal">Enter Company Name To Get Info:</h1>
+                        
+                <form action="." method="POST" >
+                <input class="form-control" type="text" name="userinput" value="">
+                <input class="btn btn-primary btn-lg px-4 me-sm-3" type="submit" name="my-form" value="Search">
+                </form>
+
+                <h2> {{processed_text}} </h2>
+            </div>
+
+            <main>
+                <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                    
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                            <div class="card-header py-3 text-white bg-primary border-primary">
+                                <h4>Info</h4>
+                            </div>
+                            <div class="card-body  scroll">
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <h5>Company Name: </h5>
+                                    <li>{{info_company}}</li>
+                                    <h5>Company_url: </h5>
+                                    <a href={{company_url}}>{{company_url}}</a>
+                                    <h5>Symbol: </h5>
+                                    <li>{{symbol|safe}}</li>
+                                    <h5>SEC_reports: </h5>
+                                    <a href={{SEC_reports}}>{{SEC_reports}}</a>
+                                    <h5>Sub_industry: </h5>
+                                    <li>{{sub_industry}}</li>
+                                    <h5>Sector: </h5>
+                                    <li>{{sector}}</li>
+                                    <h5>Headquarte: </h5>
+                                    <li>{{headquarter}}</li>
+                                </ul>
+                            </div>                        
+                        </div>    
+                    </div> 
+
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                            <div class="card-header py-3 text-white bg-primary border-primary">
+                                <h4>News</h4>
+                            </div>
+                            <div class="card-body  scroll">
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>{{news|safe}}</li>
+                                </ul>
+                            </div>                        
+                        </div>    
+                    </div>
+    
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                            <div class="card-header py-3 text-white bg-primary border-primary">
+                                <h4>Tweets</h4>
+                            </div>
+                            <div class="card-body  scroll">
+                                <div>
+                                    <ul class="list-unstyled mt-3 mb-4">
+                                        <li>{{tweets|safe}}</li>
+                                    </ul>
+                                </div>
+                            </div>                        
+                        </div>    
+                    </div>
+                </div>
+
+                <div class="">
+                    <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                        <div class="card-header py-3 text-white bg-primary border-primary">
+                            <h4>Stock</h4>
+                        </div>
+                        <div class="card-body  scroll">
+                            <div>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>{{stock|safe}}</li>
+                                </ul>
+                            </div>
+                        </div>                        
+                    </div>    
+                </div> 
+            </main>
+
+            
+            
+
+
+
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Add Company to Database (All fields required)</h4>
+                <form class="needs-validation" action="./index.html" method="GET">
+                  <div class="row g-3">
+                    <div class="col-sm-6">
+                      <label class="form-label">Company Name</label>
+                      <input type="text" class="form-control" name="companyname" placeholder="example: Apple" value="" required="">
+                      <div class="invalid-feedback">
+                        Valid compan name is required.
+                      </div>
+                    </div>
+        
+                    <div class="col-sm-6">
+                      <label class="form-label">Stock Symbol</label>
+                      <input type="text" class="form-control" name="symbol" placeholder="example: AAPL" value="" required="">
+                      <div class="invalid-feedback">
+                        Valid symbol is required.
+                      </div>
+                    </div>
+
+
+                    <div class="col-12">
+                        <label class="form-label">Company Url</label>
+                        <input type="text" class="form-control" name="company_url" placeholder="Company url link" required="">
+                        <div class="invalid-feedback">
+                          Please enter your SEC_reports link.
+                        </div>
+                      </div>
+        
+
+        
+                    <div class="col-12">
+                      <label class="form-label">SEC_reports</label>
+                      <input type="text" class="form-control" name="SEC_reports" placeholder="SEC_reports link" required="">
+                      <div class="invalid-feedback">
+                        Please enter your SEC_reports link.
+                      </div>
+                    </div>
+        
+                    <div class="col-12">
+                      <label class="form-label">Sector<span class="text-muted"></span></label>
+                      <input type="text" class="form-control" name="sector" placeholder="Sector" required="">
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Sub_industry<span class="text-muted"></span></label>
+                        <input type="text" class="form-control" name="sub_industry" placeholder="Sub_industry" required="">
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Headquarter<span class="text-muted"></span></label>
+                        <input type="text" class="form-control" name="headquarter" placeholder="Headquarte" required="">
+                    </div>
+
+        
+
+                  </div>
+        
+                  <hr class="my-4">
+        
+                  <button class="w-100 btn btn-primary btn-lg" type="submit" name="sec-form">Continue to add</button>
+                </form>
+              </div>
+        </div>   
+    </body>
+</html>
+
+
